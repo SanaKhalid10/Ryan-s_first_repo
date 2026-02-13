@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sarah's 7th Birthday Bash</title>
     <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Sniglet:wght@800&family=Pacifico&display=swap" rel="stylesheet">
     <style>
@@ -10,45 +10,47 @@
             --hot-pink: #ff1493;
             --soft-pink: #ffb6c1;
             --sugar-white: #ffffff;
-            --glitter-gold: #ffd700;
+            --python-blue: #3776ab;
         }
 
         body {
             margin: 0;
             background-color: #fff0f5;
             background-image: radial-gradient(#ffc0cb 1px, transparent 1px);
-            background-size: 20px 20px; /* Polka dot birthday vibes */
+            background-size: 20px 20px;
             color: #d81b60;
             font-family: 'Sniglet', cursive;
             overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* --- THE HEART GEM PROFILE --- */
+        /* --- HERO SECTION --- */
         .profile-hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            position: relative;
+            text-align: center;
+            padding: 20px;
         }
 
         .heart-container {
             position: relative;
-            width: 300px;
-            height: 300px;
+            width: 220px;
+            height: 220px;
             cursor: pointer;
             filter: drop-shadow(0 10px 20px rgba(255, 20, 147, 0.4));
             animation: heartFloat 3s ease-in-out infinite;
+            margin: 20px 0;
         }
 
         .heart-shape {
             width: 100%;
             height: 100%;
             background: var(--hot-pink);
-            /* Heart Shape Clip Path */
             clip-path: polygon(50% 15%, 80% 0%, 100% 20%, 100% 50%, 50% 100%, 0% 50%, 0% 20%, 20% 0%);
-            padding: 12px;
+            padding: 10px;
             box-sizing: border-box;
         }
 
@@ -66,176 +68,431 @@
             object-fit: cover;
         }
 
-        /* "HOW RUDE!" Overlay */
-        .rude-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
+        h1.main-name {
             font-family: 'Luckiest Guy', cursive;
-            font-size: 3.5rem;
-            color: var(--sugar-white);
-            text-shadow: 4px 4px 0px var(--hot-pink), -2px -2px 0px #000;
-            z-index: 25;
-            pointer-events: none;
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            width: 100%;
-            text-align: center;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin: 10px 0;
+            color: var(--hot-pink);
+            text-shadow: 3px 3px white;
         }
 
-        .heart-container:active .rude-text {
-            transform: translate(-50%, -50%) scale(1.1) rotate(-5deg);
+        .bday-tag {
+            font-size: 1.2rem;
+            background: var(--hot-pink);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            display: inline-block;
         }
 
-        @keyframes heartFloat {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-20px) scale(1.05); }
-        }
-
-        /* --- THE BIRTHDAY CAKE --- */
+        /* --- CAKE SECTION --- */
         .cake-section {
             text-align: center;
-            padding: 50px 0;
+            padding: 60px 20px;
             background: white;
             border-top: 5px dashed var(--hot-pink);
             border-bottom: 5px dashed var(--hot-pink);
+            position: relative;
         }
+
+        .cake-wrapper {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .cake-wrapper:active { transform: scale(0.9); }
 
         .cake {
-            font-size: 100px;
-            cursor: pointer;
-            display: inline-block;
-            transition: transform 0.3s;
+            font-size: 90px;
+            display: block;
+            line-height: 1;
         }
 
-        .cake:hover { transform: scale(1.2); }
-
-        /* --- SCRAPBOOK GALLERY --- */
-        .gallery-wrap {
-            padding: 80px 20px;
-            background: var(--soft-pink);
+        .smoke {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 30px;
+            opacity: 0;
+            pointer-events: none;
         }
 
-        .gallery-title {
-            font-family: 'Pacifico', cursive;
-            font-size: 4rem;
+        #wishText {
+            color: var(--hot-pink);
+            font-family: 'Luckiest Guy', cursive;
+            font-size: 1.8rem;
+            margin-top: 25px;
+            text-shadow: 1px 1px #fff;
+            padding: 0 15px;
+            min-height: 3rem;
+            line-height: 1.2;
+        }
+
+        /* --- POLL SECTION --- */
+        .auntie-poll {
+            padding: 40px 20px;
+            background: #fff;
             text-align: center;
+        }
+
+        .poll-card {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #fff9fb;
+            padding: 20px;
+            border-radius: 30px;
+            border: 3px solid var(--soft-pink);
+            position: relative;
+            min-height: 250px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-container {
+            position: relative;
+            width: 100%;
+            height: 150px;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .poll-btn {
+            padding: 12px 28px;
+            font-size: 1.2rem;
+            font-family: 'Luckiest Guy', cursive;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        #yesBtn {
+            background: #4CAF50;
             color: white;
-            text-shadow: 3px 3px var(--hot-pink);
-            margin-bottom: 40px;
+            box-shadow: 0 5px #2e7d32;
+            z-index: 5;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            white-space: nowrap;
+        }
+
+        #noBtn {
+            background: #f44336;
+            color: white;
+            box-shadow: 0 5px #c62828;
+            position: absolute;
+            z-index: 10;
+            transition: none;
+            white-space: nowrap;
+        }
+
+.rainbow-text {
+    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red, violet); /* Added violet at the end for a smooth loop */
+    background-clip: text;         /* Standard property */
+    -webkit-background-clip: text;  /* For Chrome/Safari */
+    -webkit-text-fill-color: transparent;
+    animation: rainbow 3s linear infinite;
+    background-size: 200% auto;
+    display: inline-block; /* Often required for background-clip to behave on some elements */
+}
+
+/* Ensure your keyframes move the background correctly */
+@keyframes rainbow {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+        /* --- MESSAGE SECTION --- */
+        .message-section {
+            padding: 50px 20px;
+            background: #ffffff;
+            text-align: center;
+            border-bottom: 10px dotted var(--soft-pink);
+        }
+
+        .message-card {
+            background: #fff9fb;
+            padding: 35px 20px;
+            border-radius: 30px;
+            max-width: 550px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 8px 8px 0px var(--hot-pink);
+            border: 2px solid var(--hot-pink);
+        }
+
+        .special-note {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.2rem;
+            color: #d81b60;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .style-gold { color: #ff8c00; font-weight: bold; }
+        .style-python { color: var(--python-blue); text-decoration: underline; }
+
+        /* --- SCRAPBOOK --- */
+        .gallery-wrap {
+            padding: 40px 10px;
+            background: var(--soft-pink);
+            text-align: center;
         }
 
         .sticker-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 30px;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .photo-card {
+            position: relative;
             background: white;
-            padding: 10px 10px 35px 10px;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
-            border: 2px solid var(--hot-pink);
-            transform: rotate(calc(var(--r) * 1deg));
-            transition: 0.3s;
-        }
-
-        .photo-card:hover {
-            transform: rotate(0deg) scale(1.1);
-            z-index: 10;
+            padding: 8px 8px 25px 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+            transform: rotate(calc(var(--r, 0) * 1deg));
+            transition: all 0.4s;
         }
 
         .photo-card img {
-            width: 220px;
-            height: 220px;
+            width: 140px;
+            height: 140px;
             object-fit: cover;
         }
 
-        /* --- FLOATING AGE --- */
+        /* --- FOOTER --- */
+        .love-footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: #fff;
+            font-family: 'Pacifico', cursive;
+            color: var(--hot-pink);
+            border-top: 4px solid var(--hot-pink);
+            font-size: 1.3rem;
+        }
+
+        /* BADGES */
         .age-badge {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            right: 15px;
             background: var(--hot-pink);
             color: white;
-            width: 110px;
-            height: 100px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Pacifico';
-            font-size: 2rem;
-            border: 4px solid white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
+        .date-badge {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background: var(--hot-pink);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Pacifico';
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            line-height: 1.1;
+            font-size: 0.9rem;
+        }
+
+        @keyframes heartFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.03); }
+        }
+
+        .rude-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            font-size: 1.8rem;
+            color: white;
+            text-shadow: 2px 2px var(--hot-pink);
+            pointer-events: none;
+            transition: 0.4s;
+            z-index: 25;
+            width: 100%;
+        }
+
+        @keyframes bounceInText {
+            0% { transform: scale(0.5); opacity: 0; }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
     </style>
 </head>
 <body>
 
+    <div class="date-badge">14<br>Feb</div>
     <div class="age-badge">7th BD</div>
 
     <section class="profile-hero">
-        <h2 style="font-family: 'Pacifico'; font-size: 2rem; color: var(--hot-pink);">Tap Sarah's Heart!</h2>
-        
+        <h2 style="font-family: 'Pacifico'; font-size: 1.2rem; color: var(--hot-pink); margin: 0;">Tap Sarah's Heart!</h2>
         <div class="heart-container" onclick="partyBlast()">
             <div class="heart-shape">
                 <div class="heart-inner">
                     <img src="Sarahs_pic.jpeg" alt="Sarah" onerror="this.src='https://api.dicebear.com/7.x/adventurer/svg?seed=Sarah&mouth=smile&hair=long'">
                 </div>
             </div>
-            <div id="rudeMsg" class="rude-text",style="font-family: 'Pacifico';> HOWWW RUEEEEDDEEEE! 🎀</div>
+            <div id="rudeMsg" class="rude-text" style="font-family: 'Pacifico';"> HOWWW RUEEEEDDEEEE! 🎀</div>
         </div>
-
-        <h1 style="font-family: 'Luckiest Guy', cursive; font-size: 6rem; margin-top: 10px; color: var(--hot-pink); text-shadow: 4px 4px white;">SARAH</h1>
-        <p style="font-size: 1.8rem; background: var(--hot-pink); color: white; padding: 5px 20px; border-radius: 50px;">🎂 Happy 7th Birthday! 🎂</p>
+        <h1 class="main-name">Dear Sarah</h1>
+        <p class="bday-tag">🎂 Happy 7th Birthday! 🎂</p>
     </section>
 
     <section class="cake-section">
-        <h2 style="font-family: 'Pacifico';">Click to blow the candles!</h2>
-        <div class="cake" id="cake" onclick="blowCandles()">🎂</div>
-        <p id="wishText" style="display:none; color: var(--hot-pink);font-size:x-large ;font-weight: bold;">Make a wish, Sarah! ✨</p>
+        <h2 style="font-family: 'Pacifico'; font-size: 1.3rem; margin-bottom: 20px;">Blow the candles, Sarah! 🕯️</h2>
+        <div class="cake-wrapper" id="cakeGroup" onclick="blowCandles()">
+            <div class="smoke" id="smokeCloud">💨</div>
+            <div class="cake" id="cake">🎂</div>
+        </div>
+        <p id="wishText">Make a secret wish! ✨</p>
     </section>
 
-    <section class="gallery-wrap">
-        <h2 class="gallery-title">Sarah's Scrapbook</h2>
-        <div class="sticker-grid">
-            <div class="photo-card" style="--r: -4">
-                <img src="https://picsum.photos/400/400?sig=1">
+    <section class="auntie-poll">
+        <div class="poll-card" id="pollCard">
+            <h2 style="font-family: 'Luckiest Guy'; color: var(--hot-pink); font-size: 1.8rem; margin: 5px 0;">Quick Question! 🤔</h2>
+            <p style="font-family: 'Pacifico'; font-size: 1.2rem; margin: 5px 0;">Is Sana your favourite Auntie???</p>
+            <div class="btn-container" id="pollArea">
+                <button class="poll-btn" id="yesBtn" onclick="votedYes()">YES!</button>
+                <button class="poll-btn" id="noBtn" onmouseover="moveNo()" onclick="moveNo()">NO</button>
             </div>
-            <div class="photo-card" style="--r: 5">
-                <img src="https://picsum.photos/400/400?sig=2">
-            </div>
-            <div class="photo-card" style="--r: -2">
-                <img src="https://picsum.photos/400/400?sig=3">
-            </div>
-            <div class="photo-card" style="--r: 7">
-                <img src="https://picsum.photos/400/400?sig=4">
-            </div>
+            <p id="pollResponse" style="margin-top: 10px; font-family: 'Luckiest Guy'; font-size: 1.8rem;"></p>
         </div>
     </section>
 
+    <section class="message-section">
+        <div class="message-card">
+            <p class="special-note">
+                Let me tell you, Sarah is the secret legend of our group 😌 
+                always coming in with different names… 
+                sometimes <span class="style-gold">Me</span>, 
+                sometimes <span class="style-gold">Her</span>, 
+                sometimes <span class="style-gold">Ma'am</span>, 
+                and sometimes even <span class="style-gold">Ryan</span>! 😂
+                <br><br>
+                Happy Birthday Sarah 😌🎉
+                <br>
+                My dear cute little annoying superstar, honestly, 
+                how rude of you to get older without asking permission! 
+                <br><br>
+                Stay loud, stay funny and never stop being the 
+                <span class="style-python">rock of the Python coding community</span>. 
+                We secretly love you! ❤️
+                <br><br>
+                May Allah bless you and always keep you happy! ❤️❤️❤️
+            </p>
+        </div>
+    </section>
+
+    <section class="gallery-wrap">
+        <h2 style="font-family: 'Pacifico'; font-size: 2rem; color: white; text-shadow: 2px 2px var(--hot-pink);">Sarah's Scrapbook</h2>
+        <div class="sticker-grid">
+            <div class="photo-card" style="--r: -4"><img src="sarah_2.jpeg"></div>
+            <div class="photo-card" style="--r: 3"><img src="sarah_1.jpeg"></div>
+            <div class="photo-card" style="--r: -5"><img src="sarah_3.jpeg"></div>
+            <div class="photo-card" style="--r: 5"><img src="Sarah_ryan.jpeg"></div>
+            <div class="photo-card" style="--r: -4"><img src="sara_5.jpeg"></div>
+            <div class="photo-card" style="--r: 3"><img src="sara_6.jpeg"></div>
+            <div class="photo-card" style="--r: -5"><img src="sara_4 (1).jpeg"></div>
+            <div class="photo-card" style="--r: 5"><img src="sara_7.jpeg"></div>
+        </div>
+    </section>
+
+    <footer class="love-footer">
+        <p style="margin: 0;">Made by your Cool Auntie 😎</p>
+    </footer>
+
     <script>
+        let yesScale = 1;
+        const noPhrases = ["Not Today!", "No Away!", "Try Again!", "Try to click!", "Too slow!"];
+        let phraseIdx = 0;
+
+        function moveNo() {
+            const noBtn = document.getElementById('noBtn');
+            const pollArea = document.getElementById('pollArea');
+            const yesBtn = document.getElementById('yesBtn');
+
+            const maxX = pollArea.clientWidth - noBtn.clientWidth - 10;
+            const maxY = pollArea.clientHeight - noBtn.clientHeight - 10;
+            
+            noBtn.style.left = Math.floor(Math.random() * maxX) + 'px';
+            noBtn.style.top = Math.floor(Math.random() * maxY) + 'px';
+            
+            noBtn.innerHTML = noPhrases[phraseIdx];
+            phraseIdx = (phraseIdx + 1) % noPhrases.length;
+            
+            if (yesScale < 2.5) {
+                yesScale += 0.2;
+                yesBtn.style.transform = `scale(${yesScale})`;
+            }
+        }
+
+        function votedYes() {
+            document.getElementById('noBtn').style.display = 'none';
+            document.getElementById('yesBtn').style.transform = 'scale(1)';
+            const resp = document.getElementById('pollResponse');
+            resp.innerHTML = "GOOD GIRL! 😎💖✨";
+            resp.className = "rainbow-text";
+            resp.style.animation = "bounceInText 0.5s forwards";
+            for(let i=0; i<40; i++) createEmoji('🥳😎');
+        }
+
         function partyBlast() {
-            // Confetti effect
-            for(let i=0; i<30; i++) {
+            const msg = document.getElementById('rudeMsg');
+            msg.style.transform = "translate(-50%, -50%) scale(1.1)";
+            setTimeout(() => { msg.style.transform = "translate(-50%, -50%) scale(0)"; }, 1500);
+            for(let i=0; i<40; i++) {
                 createEmoji('💖');
                 createEmoji('🎀');
-                createEmoji('✨');
+                createEmoji('😎'); 
+                createEmoji('7');
             }
         }
 
         function blowCandles() {
             const cake = document.getElementById('cake');
-            const wish = document.getElementById('wishText');
-            cake.innerHTML = '🍰'; // Cake gets eaten/sliced
-            wish.style.display = 'block';
-            
-            for(let i=0; i<50; i++) {
+            const smoke = document.getElementById('smokeCloud');
+            const wishText = document.getElementById('wishText');
+
+            smoke.animate([
+                { transform: 'translateX(-50%) translateY(0) scale(1)', opacity: 1 },
+                { transform: 'translateX(-50%) translateY(-50px) scale(2)', opacity: 0 }
+            ], { duration: 1000, easing: 'ease-out' });
+
+            cake.innerHTML = '🍰'; 
+            wishText.innerHTML = "Happy 7th Birthday and Stay Blessed Dear Sarah! ✨";
+            wishText.style.animation = "bounceInText 0.8s ease-out forwards";
+
+            for(let i=0; i<60; i++) {
                 createEmoji('🎈');
+                createEmoji('✨');
+                createEmoji('🥳');
+                createEmoji('💖');
             }
         }
 
@@ -245,10 +502,11 @@
             e.style.position = 'fixed';
             e.style.left = Math.random() * 100 + 'vw';
             e.style.top = '100vh';
-            e.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            if (type === '7') { e.style.fontFamily = 'Luckiest Guy'; e.style.color = 'var(--hot-pink)'; }
+            e.style.fontSize = (Math.random() * 15 + 20) + 'px';
             e.style.zIndex = '200';
+            e.style.pointerEvents = 'none';
             document.body.appendChild(e);
-
             const anim = e.animate([
                 { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
                 { transform: `translateY(-110vh) translateX(${Math.random() * 200 - 100}px) rotate(360deg)`, opacity: 0 }
@@ -256,7 +514,6 @@
                 duration: Math.random() * 2000 + 2000,
                 easing: 'ease-out'
             });
-
             anim.onfinish = () => e.remove();
         }
     </script>
