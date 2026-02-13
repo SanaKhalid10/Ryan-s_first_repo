@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarah's 7th Birthday Bash</title>
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Sniglet:wght@800&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --hot-pink: #ff1493;
+            --soft-pink: #ffb6c1;
+            --sugar-white: #ffffff;
+            --glitter-gold: #ffd700;
+        }
+
+        body {
+            margin: 0;
+            background-color: #fff0f5;
+            background-image: radial-gradient(#ffc0cb 1px, transparent 1px);
+            background-size: 20px 20px; /* Polka dot birthday vibes */
+            color: #d81b60;
+            font-family: 'Sniglet', cursive;
+            overflow-x: hidden;
+        }
+
+        /* --- THE HEART GEM PROFILE --- */
+        .profile-hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .heart-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            cursor: pointer;
+            filter: drop-shadow(0 10px 20px rgba(255, 20, 147, 0.4));
+            animation: heartFloat 3s ease-in-out infinite;
+        }
+
+        .heart-shape {
+            width: 100%;
+            height: 100%;
+            background: var(--hot-pink);
+            /* Heart Shape Clip Path */
+            clip-path: polygon(50% 15%, 80% 0%, 100% 20%, 100% 50%, 50% 100%, 0% 50%, 0% 20%, 20% 0%);
+            padding: 12px;
+            box-sizing: border-box;
+        }
+
+        .heart-inner {
+            width: 100%;
+            height: 100%;
+            background: white;
+            clip-path: polygon(50% 18%, 78% 3%, 97% 22%, 97% 48%, 50% 95%, 3% 48%, 3% 22%, 22% 3%);
+            overflow: hidden;
+        }
+
+        .heart-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* "HOW RUDE!" Overlay */
+        .rude-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            font-family: 'Luckiest Guy', cursive;
+            font-size: 3.5rem;
+            color: var(--sugar-white);
+            text-shadow: 4px 4px 0px var(--hot-pink), -2px -2px 0px #000;
+            z-index: 25;
+            pointer-events: none;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 100%;
+            text-align: center;
+        }
+
+        .heart-container:active .rude-text {
+            transform: translate(-50%, -50%) scale(1.1) rotate(-5deg);
+        }
+
+        @keyframes heartFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+
+        /* --- THE BIRTHDAY CAKE --- */
+        .cake-section {
+            text-align: center;
+            padding: 50px 0;
+            background: white;
+            border-top: 5px dashed var(--hot-pink);
+            border-bottom: 5px dashed var(--hot-pink);
+        }
+
+        .cake {
+            font-size: 100px;
+            cursor: pointer;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .cake:hover { transform: scale(1.2); }
+
+        /* --- SCRAPBOOK GALLERY --- */
+        .gallery-wrap {
+            padding: 80px 20px;
+            background: var(--soft-pink);
+        }
+
+        .gallery-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 4rem;
+            text-align: center;
+            color: white;
+            text-shadow: 3px 3px var(--hot-pink);
+            margin-bottom: 40px;
+        }
+
+        .sticker-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .photo-card {
+            background: white;
+            padding: 10px 10px 35px 10px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid var(--hot-pink);
+            transform: rotate(calc(var(--r) * 1deg));
+            transition: 0.3s;
+        }
+
+        .photo-card:hover {
+            transform: rotate(0deg) scale(1.1);
+            z-index: 10;
+        }
+
+        .photo-card img {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        /* --- FLOATING AGE --- */
+        .age-badge {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--hot-pink);
+            color: white;
+            width: 110px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Pacifico';
+            font-size: 2rem;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="age-badge">7th BD</div>
+
+    <section class="profile-hero">
+        <h2 style="font-family: 'Pacifico'; font-size: 2rem; color: var(--hot-pink);">Tap Sarah's Heart!</h2>
+        
+        <div class="heart-container" onclick="partyBlast()">
+            <div class="heart-shape">
+                <div class="heart-inner">
+                    <img src="Sarahs_pic.jpeg" alt="Sarah" onerror="this.src='https://api.dicebear.com/7.x/adventurer/svg?seed=Sarah&mouth=smile&hair=long'">
+                </div>
+            </div>
+            <div id="rudeMsg" class="rude-text",style="font-family: 'Pacifico';> HOWWW RUEEEEDDEEEE! 🎀</div>
+        </div>
+
+        <h1 style="font-family: 'Luckiest Guy', cursive; font-size: 6rem; margin-top: 10px; color: var(--hot-pink); text-shadow: 4px 4px white;">SARAH</h1>
+        <p style="font-size: 1.8rem; background: var(--hot-pink); color: white; padding: 5px 20px; border-radius: 50px;">🎂 Happy 7th Birthday! 🎂</p>
+    </section>
+
+    <section class="cake-section">
+        <h2 style="font-family: 'Pacifico';">Click to blow the candles!</h2>
+        <div class="cake" id="cake" onclick="blowCandles()">🎂</div>
+        <p id="wishText" style="display:none; color: var(--hot-pink);font-size:x-large ;font-weight: bold;">Make a wish, Sarah! ✨</p>
+    </section>
+
+    <section class="gallery-wrap">
+        <h2 class="gallery-title">Sarah's Scrapbook</h2>
+        <div class="sticker-grid">
+            <div class="photo-card" style="--r: -4">
+                <img src="https://picsum.photos/400/400?sig=1">
+            </div>
+            <div class="photo-card" style="--r: 5">
+                <img src="https://picsum.photos/400/400?sig=2">
+            </div>
+            <div class="photo-card" style="--r: -2">
+                <img src="https://picsum.photos/400/400?sig=3">
+            </div>
+            <div class="photo-card" style="--r: 7">
+                <img src="https://picsum.photos/400/400?sig=4">
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function partyBlast() {
+            // Confetti effect
+            for(let i=0; i<30; i++) {
+                createEmoji('💖');
+                createEmoji('🎀');
+                createEmoji('✨');
+            }
+        }
+
+        function blowCandles() {
+            const cake = document.getElementById('cake');
+            const wish = document.getElementById('wishText');
+            cake.innerHTML = '🍰'; // Cake gets eaten/sliced
+            wish.style.display = 'block';
+            
+            for(let i=0; i<50; i++) {
+                createEmoji('🎈');
+            }
+        }
+
+        function createEmoji(type) {
+            const e = document.createElement('div');
+            e.innerHTML = type;
+            e.style.position = 'fixed';
+            e.style.left = Math.random() * 100 + 'vw';
+            e.style.top = '100vh';
+            e.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            e.style.zIndex = '200';
+            document.body.appendChild(e);
+
+            const anim = e.animate([
+                { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                { transform: `translateY(-110vh) translateX(${Math.random() * 200 - 100}px) rotate(360deg)`, opacity: 0 }
+            ], {
+                duration: Math.random() * 2000 + 2000,
+                easing: 'ease-out'
+            });
+
+            anim.onfinish = () => e.remove();
+        }
+    </script>
+</body>
+</html>
